@@ -37,6 +37,7 @@ class Descarte:
 TAMANIO_MAZO = 250
 ELEMENTOS = ["agua", "fuego", "aire", "tierra", "electricidad"]
 ATRIBUTOS = ["velocidad", "fuerza", "peso", "altura"]
+MAX_RONDA=10
 
 # Funciones (podrían ser métodos)
 
@@ -101,18 +102,19 @@ def apilar_al_fondo(mazo, nodo_nuevo):
     return mazo
 
 
-def mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda):
+def mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda,ganador):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(f"Ronda {num_ronda} - Atributo elegido: {atributo.upper()}")
     print("-----------------------------------------------------")
-    print(f"{j1.nombre} - Puntaje: {j1.puntaje}")
+    print(f"{j1.nombre} - Puntaje acumulado: {j1.puntaje}")
     print(f"Carta: {carta_j1}")
     print(f"Valor: {valor_j1}")
     print("-----------------------------------------------------")
-    print(f"{j2.nombre} - Puntaje: {j2.puntaje}")
+    print(f"{j2.nombre} - Puntaje acumulado: {j2.puntaje}")
     print(f"Carta: {carta_j2}")
     print(f"Valor: {valor_j2}")
     print("-----------------------------------------------------")
+    print(f"Ganador de la ronda: {ganador.nombre} 🎉")
     input("Presioná ENTER para continuar...\n")
 
 
@@ -127,7 +129,6 @@ def ronda(j1, j2, descarte, num_ronda):
     valor_j1 = getattr(carta_j1, atributo)
     valor_j2 = getattr(carta_j2, atributo)
 
-    mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda)
 
     j1.mazo = j1.mazo.siguiente
     j2.mazo = j2.mazo.siguiente
@@ -139,12 +140,17 @@ def ronda(j1, j2, descarte, num_ronda):
         nodo2.siguiente = nodo1
         j1.mazo = apilar_al_fondo(j1.mazo, nodo2)
 
+        mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda, j1)
+
     elif valor_j2 > valor_j1:
         j2.puntaje += 1
         nodo1 = Nodo(carta_j1)
         nodo2 = Nodo(carta_j2)
         nodo2.siguiente = nodo1
         j2.mazo = apilar_al_fondo(j2.mazo, nodo2)
+
+        mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda, j2)
+
 
     else:
         nodo1 = Nodo(carta_j1)
@@ -163,10 +169,14 @@ def main():
 
     mazo_total = armar_mazo()
     mazo_total = mezclar_mazo(mazo_total)
+    juego_terminado = False
+    num_ronda = 1
     repartir_mazo(mazo_total, jugador_1, jugador_2)
-    num_ronda=1
 
-    while jugador_1.mazo and jugador_2.mazo:
+    while juego_terminado==False:
+        if num_ronda > MAX_RONDA or (jugador_1.mazo is None or jugador_2.mazo is None):
+            juego_terminado = True
+            break
         ronda(jugador_1, jugador_2, descarte, num_ronda)
         num_ronda=num_ronda+1
 

@@ -28,6 +28,7 @@ LISTA atributos = ["velocidad", "fuerza", "peso", "altura"]
 mazo_total = None
 ENTERO num_ronda = 1 
 BOOLEANO juego_terminado = FALSO
+ENTERO max_ronda = 10
 
 # Vamos a ejecutar paso a paso el juego
 
@@ -109,19 +110,20 @@ FINFUNCION
 
 # Función para mostrar los resultados de las rondas y el juego en pantalla
 
-FUNCION mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda):
+FUNCION mostrar_estado(j1, j2, carta_j1, carta_j2, atributo, valor_j1, valor_j2, num_ronda, ganador):
   LIMPIAR_PANTALLA  # Simula os.system('cls' o 'clear')
 
   IMPRIMIR "Ronda ", num_ronda, " - Atributo elegido: ", MAYUSCULAS(atributo)
   IMPRIMIR "-----------------------------------------------------"
-  IMPRIMIR j1.nombre, " - Puntaje: ", j1.puntaje
+  IMPRIMIR j1.nombre, " - Puntaje acumulado: ", j1.puntaje
   IMPRIMIR "Carta: ", carta_j1.nombre, " | Vel: ", carta_j1.velocidad, " | Fue: ", carta_j1.fuerza, " | Elem: ", carta_j1.elemento, " | Pes: ", carta_j1.peso, " | Alt: ", carta_j1.altura
   IMPRIMIR "Valor: ", valor_j1
   IMPRIMIR "-----------------------------------------------------"
-  IMPRIMIR j2.nombre, " - Puntaje: ", j2.puntaje
+  IMPRIMIR j2.nombre, " - Puntaje acumulado: ", j2.puntaje
   IMPRIMIR "Carta: ", carta_j2.nombre, " | Vel: ", carta_j2.velocidad, " | Fue: ", carta_j2.fuerza, " | Elem: ", carta_j2.elemento, " | Pes: ", carta_j2.peso, " | Alt: ", carta_j2.altura
   IMPRIMIR "Valor: ", valor_j2
   IMPRIMIR "-----------------------------------------------------"
+  IMPRIMIR "Ganó el jugador {ganador}!"
   ESPERAR_ENTRADA("Presioná ENTER para continuar...")
 FINFUNCION
 
@@ -134,8 +136,6 @@ FUNCION ronda(jugador_1, jugador_2, descarte):
 
   valor_j1 = carta_j1[atributo_elegido]
   valor_j2 = carta_j2[atributo_elegido]
-
-  mostrar_estado(jugador_1, jugador_2, carta_j1, carta_j2, atributo_elegido, valor_j1, valor_j2, num_ronda)
 
   # Desapilamos
 
@@ -158,6 +158,8 @@ FUNCION ronda(jugador_1, jugador_2, descarte):
   # Apilar la última carta en el fondo
     jugador_1.mazo = apilar_al_fondo(jugador_1.mazo, nodo2)
 
+    mostrar_estado(jugador_1, jugador_2, carta_j1, carta_j2, atributo_elegido, valor_j1, valor_j2, num_ronda,j1)
+
   # Lo mismo para J2
   SINO SI valor_j2 > valor_j1:
     jugador_2.puntaje = jugador_2.puntaje + 1
@@ -170,6 +172,8 @@ FUNCION ronda(jugador_1, jugador_2, descarte):
     nodo2.siguiente = nodo1
 
     jugador_2.mazo = apilar_al_fondo(jugador_2.mazo, nodo2)
+
+    mostrar_estado(jugador_1, jugador_2, carta_j1, carta_j2, atributo_elegido, valor_j1, valor_j2, num_ronda,j2)
 
   #Si es empate, al descarte:
   SINO:
@@ -186,8 +190,8 @@ FUNCION ronda(jugador_1, jugador_2, descarte):
 FIN FUNCION
 
 MIENTRAS juego_terminado==Falso:
+  SI jugador_1.mazo == NULO O jugador_2.mazo == NULO O num_ronda>max_ronda:
+    juego_terminado=True
   ronda(jugador_1, jugador_2, descarte)
   num_ronda = num_ronda + 1
-  SI jugador_1.mazo == NULO O jugador_2.mazo == NULO:
-    juego_terminado=True
   FIN SI
