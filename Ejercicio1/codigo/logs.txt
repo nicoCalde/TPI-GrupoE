@@ -1,0 +1,205 @@
+$ python main.py
+Inicio
+Comparando métodos de ordenamiento
+==================================================
+
+Arrays de 10 elementos
+----------------------------------------
+
+--- Probando Shell ---
+Shell Sort completado. Intercambios realizados: 10
+Tiempo: 0.00012030 segundos
+
+--- Probando Rápido ---
+Quick Sort completado. Intercambios realizados: 12
+Tiempo: 0.00008800 segundos
+
+--- Probando Mergeo ---
+Merge Sort completado. Movimientos realizados: 34
+Tiempo: 0.00011940 segundos
+
+--- Probando Inserción ---
+Insertion Sort completado. Movimientos realizados: 21
+Tiempo: 0.00010070 segundos
+
+--- Probando Selección ---
+Ordenamiento por selección completado. Total de intercambios: 10
+Tiempo: 0.00011950 segundos
+
+--- Probando Burbujeo ---
+Bubble Sort completado. Intercambios realizados: 21
+Tiempo: 0.00010470 segundos
+
+--- Probando Burbujeo Optimizado ---
+Bubble Sort optimizado completado. Intercambios realizados: 21
+Tiempo: 0.00010140 segundos
+
+==================================================
+
+Arrays de 100 elementos
+----------------------------------------
+
+--- Probando Shell ---
+Shell Sort completado. Intercambios realizados: 380
+Tiempo: 0.00019140 segundos
+
+--- Probando Rápido ---
+Quick Sort completado. Intercambios realizados: 354
+Tiempo: 0.00021290 segundos
+
+--- Probando Mergeo ---
+Merge Sort completado. Movimientos realizados: 672
+Tiempo: 0.00027400 segundos
+
+--- Probando Inserción ---
+Insertion Sort completado. Movimientos realizados: 2143
+Tiempo: 0.00033220 segundos
+
+--- Probando Selección ---
+Ordenamiento por selección completado. Total de intercambios: 100
+Tiempo: 0.00031480 segundos
+
+--- Probando Burbujeo ---
+Bubble Sort completado. Intercambios realizados: 2143
+Tiempo: 0.00079520 segundos
+
+--- Probando Burbujeo Optimizado ---
+Bubble Sort optimizado completado. Intercambios realizados: 2143
+Tiempo: 0.00054620 segundos
+
+==================================================
+
+Arrays de 1,000 elementos
+----------------------------------------
+
+--- Probando Shell ---
+Shell Sort completado. Intercambios realizados: 7203
+Tiempo: 0.00247190 segundos
+
+--- Probando Rápido ---
+Quick Sort completado. Intercambios realizados: 5506
+Tiempo: 0.00149840 segundos
+
+--- Probando Mergeo ---
+Merge Sort completado. Movimientos realizados: 9976
+Tiempo: 0.00310280 segundos
+
+--- Probando Inserción ---
+Insertion Sort completado. Movimientos realizados: 247521
+Tiempo: 0.03246490 segundos
+
+--- Probando Selección ---
+Ordenamiento por selección completado. Total de intercambios: 1000
+Tiempo: 0.02311890 segundos
+
+--- Probando Burbujeo ---
+Bubble Sort completado. Intercambios realizados: 247521
+Tiempo: 0.09911500 segundos
+
+--- Probando Burbujeo Optimizado ---
+Bubble Sort optimizado completado. Intercambios realizados: 247521
+Tiempo: 0.06160130 segundos
+
+==================================================
+
+Arrays de 10,000 elementos
+----------------------------------------
+
+--- Probando Shell ---
+Shell Sort completado. Intercambios realizados: 152225
+Tiempo: 0.03563910 segundos
+
+
+--- Probando Rápido ---
+Quick Sort completado. Intercambios realizados: 81392
+Tiempo: 0.01940040 segundos
+
+--- Probando Mergeo ---
+Merge Sort completado. Movimientos realizados: 133616
+Tiempo: 0.03581570 segundos
+
+--- Probando Inserción ---
+Insertion Sort completado. Movimientos realizados: 24804852
+Tiempo: 2.81382250 segundos
+
+--- Probando Selección ---
+Ordenamiento por selección completado. Total de intercambios: 10000
+Tiempo: 2.10290770 segundos
+
+--- Probando Burbujeo ---
+Bubble Sort completado. Intercambios realizados: 24804852
+Tiempo: 9.42305320 segundos
+
+--- Probando Burbujeo Optimizado ---
+Bubble Sort optimizado completado. Intercambios realizados: 24804852
+Tiempo: 5.76710710 segundos
+
+==================================================
+
+Arrays de 100,000 elementos
+----------------------------------------
+
+--- Probando Shell ---
+Shell Sort completado. Intercambios realizados: 2807167
+Tiempo: 0.61568460 segundos
+
+--- Probando Rápido ---
+Quick Sort completado. Intercambios realizados: 1002966
+Tiempo: 0.23934500 segundos
+
+--- Probando Mergeo ---
+Merge Sort completado. Movimientos realizados: 1668928
+Tiempo: 0.44161280 segundos
+
+--- Probando Inserción ---
+Insertion Sort completado. Movimientos realizados: 2498769282
+Tiempo: 323.85015450 segundos
+
+--- Probando Selección ---
+Ordenamiento por selección completado. Total de intercambios: 100000
+Tiempo: 207.97098120 segundos
+
+--- Probando Burbujeo ---
+Bubble Sort completado. Intercambios realizados: ????
+Tiempo: timeout
+
+--- Probando Burbujeo Optimizado ---
+Bubble Sort optimizado completado. Intercambios realizados: ????
+Tiempo: timeout
+
+==================================================
+
+Arrays de 1,000,000 elementos
+----------------------------------------
+
+--- Probando Shell ---
+Shell Sort completado. Intercambios realizados: 49618907
+Tiempo: 10.77683580 segundos
+
+--- Probando Rápido ---
+Quick Sort completado. Intercambios realizados: 12963124
+Tiempo: 3.10170460 segundos
+
+--- Probando Mergeo ---
+Merge Sort completado. Movimientos realizados: 19951424
+Tiempo: 5.23839150 segundos
+
+--- Probando Inserción ---
+Insertion Sort completado. Movimientos realizados: ????
+Tiempo: timeout
+
+--- Probando Selección ---
+Ordenamiento por selección completado. Total de intercambios: ????
+Tiempo: timeout
+
+--- Probando Burbujeo ---
+Bubble Sort completado. Intercambios realizados: ????
+Tiempo: timeout
+
+--- Probando Burbujeo Optimizado ---
+Bubble Sort optimizado completado. Intercambios realizados: ????
+Tiempo: timeout
+
+==================================================
+
+Completado

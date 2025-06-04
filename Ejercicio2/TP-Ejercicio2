@@ -1,0 +1,122 @@
+Ejercicio:2
+Resolver el siguiente ejercicio utilizando estructuras, vectores y matrices:
+Una empresa de productos alimenticios posee 30 empleados, quienes mensualmente cobran un sueldo basándonos en las horas trabajadas. La empresa tiene un registro de los sueldos abonados a cada empleado en cada mes del año, en planillas mensuales con la siguiente forma: Número de empleado, cantidad de horas, valor de la hora.
+1-	Obtener del archivo nomina.txt el nombre de los 30 empleados y guardarlos en vector llamado empleados.
+2-	Calcular el sueldo anual de cada empleado.
+3-	Calcular y mostrar el total de sueldos pagados cada mes.
+4-	Calcular y mostrar el máximo sueldo pagado en cada mes.
+5-	Porcentaje que representa cada sueldo sobre el total de un mes en específico.
+6-	Nombre del empleado que haya cobrado el menor sueldo en el primer semestre.
+7-	Cantidad de meses en los que se haya pagado menos de $4 Millones en total de sueldos.
+8-	Guardar en el archivo liquidación.txt todos los sueldos anuales en forma ascendente.
+
+//DEFINICIÓN DE VARIABLES Y ESTRUCTURAS
+
+// Definición de la estructura
+estructura Empleado:
+    nombre: cadena                      // Nombre del empleado
+    sueldos[12]: real                   // Sueldos mensuales
+    sueldoAnual: real                   // Sueldo acumulado anual
+
+// Declaración de variables
+
+empleados[30]: vector de Empleado       // Vector que almacena los 30 empleados
+horas[30][12]: matriz de enteros        // Horas trabajadas por empleado y por mes
+valorHora[30][12]: matriz de reales     // Valor de la hora para cada empleado y mes
+totalMensual[12]: vector de reales      // Total de sueldos pagados por mes
+maximoMensual[12]: vector de reales     // Sueldo máximo pagado por mes
+menorSueldoSemestre: real               // Menor sueldo acumulado en el primer semestre
+nombreMenorSueldo: cadena               // Nombre del empleado con menor sueldo en semestre
+mesesMenos4M: entero                    // Contador de meses con total de sueldos < 4 millones
+
+//Punto 1CARGAR NOMBRES DE EMPLEADOS DESDE ARCHIVO 
+
+Abrir archivo y leer los nombres de los empleados
+abrir archivo "nomina.txt" en modo lectura
+para i desde 0 hasta 29 hacer
+    leer línea del archivo → empleados[i].nombre
+fin para
+cerrar archivo
+//Punto 2,3, y 4 CALCULAR SUELDOS, TOTALES Y MÁXIMOS MENSUALES
+// Procesar cada mes del año
+para mes desde 0 hasta 11 hacer
+    totalMensual[mes] ← 0                   // Inicializa acumulador mensual
+    maximoMensual[mes] ← 0                  // Inicializa valor máximo mensual
+
+    // Calcular sueldo por empleado para el mes
+    para i desde 0 hasta 29 hacer
+        leer archivo: horas[i][mes], valorHora[i][mes]        // Simular lectura por mes y empleado
+        sueldo ← horas[i][mes] * valorHora[i][mes]            // Calcular sueldo mensual
+        empleados[i].sueldos[mes] ← sueldo                    // Guardar sueldo en estructura
+        empleados[i].sueldoAnual ← empleados[i].sueldoAnual + sueldo // Acumular sueldo anual
+
+        totalMensual[mes] ← totalMensual[mes] + sueldo        // Acumular total del mes
+
+        // Determinar sueldo máximo del mes
+        si sueldo > maximoMensual[mes] entonces
+            maximoMensual[mes] ← sueldo
+        fin si
+    fin para
+fin para
+
+//Punto 5 PORCENTAJE DE CADA SUELDO RESPECTO AL TOTAL DE UN MES
+
+// Calcular el porcentaje que representa cada sueldo en el mes indicado
+ingresar mesBuscado
+
+para i desde 0 hasta 29 hacer
+    porcentaje ← (empleados[i].sueldos[mesBuscado] / totalMensual[mesBuscado]) * 100
+    mostrar empleados[i].nombre, porcentaje
+fin para
+
+//EMPLEADO CON MENOR SUELDO EN EL PRIMER SEMESTRE
+menorSueldoSemestre ← INFINITO
+nombreMenorSueldo ← ""
+
+// Recorrer todos los empleados
+para i desde 0 hasta 29 hacer
+    totalSemestre ← 0
+
+    // Punto 6 Sumar sueldos del primer semestre (enero a junio)
+    para mes desde 0 hasta 5 hacer
+        totalSemestre ← totalSemestre + empleados[i].sueldos[mes]
+    fin para
+
+    // Comparar si este total es el menor registrado
+    si totalSemestre < menorSueldoSemestre entonces
+        menorSueldoSemestre ← totalSemestre
+        nombreMenorSueldo ← empleados[i].nombre
+    fin si
+fin para
+
+mostrar "Empleado con menor sueldo en el primer semestre: ", nombreMenorSueldo
+
+//Punto 7 CANTIDAD DE MESES CON SUELDOS MENORES A 4 MILLONES
+
+mesesMenos4M ← 0
+
+// Verificar total de cada mes
+para mes desde 0 hasta 11 hacer
+    si totalMensual[mes] < 4000000 entonces
+        mesesMenos4M ← mesesMenos4M + 1
+    fin si
+fin para
+
+mostrar "Cantidad de meses con sueldos menores a $4M: ", mesesMenos4M
+
+// Punto 8 GUARDAR SUELDOS ANUALES EN ORDEN ASCENDENTE EN ARCHIVO
+
+// Crear vector auxiliar con sueldos anuales
+crear vector sueldosOrdenados[30]
+para i desde 0 hasta 29 hacer
+    sueldosOrdenados[i] ← empleados[i].sueldoAnual
+fin para
+
+ordenar sueldosOrdenados en orden ascendente   // Ordenamiento clásico (burbuja, inserción, etc.)
+
+// Guardar sueldos ordenados en archivo
+abrir archivo "liquidacion.txt" en modo escritura
+para i desde 0 hasta 29 hacer
+    escribir en archivo: sueldosOrdenados[i]
+fin para
+cerrar archivo
