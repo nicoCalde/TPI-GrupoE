@@ -1,3 +1,4 @@
+```plaintext
 # Para resolver este problema, vamos a usar pilas (LIFO)
 TIPO Carta:
   nombre: cadena,
@@ -308,3 +309,4 @@ MIENTRAS juego_terminado==Falso:
     FIN SI
   FIN SI
 FIN MIENTRAS
+```
